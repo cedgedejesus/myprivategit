@@ -1,8 +1,6 @@
 package com.disney.ecommerce.modernizer.security;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -44,17 +42,5 @@ public class JWTUtil {
 	    }
 	 
 	    return builder.compact();
-	}
-	
-	public void authenticateJWT(String jwt) {
-		 
-	    //This line will throw an exception if it is not a signed JWS (as expected)
-	    Claims claims = Jwts.parser()         
-	       .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET))
-	       .parseClaimsJws(jwt).getBody();
-	    System.out.println("ID: " + claims.getId());
-	    System.out.println("Subject: " + claims.getSubject());
-	    System.out.println("Issuer: " + claims.getIssuer());
-	    System.out.println("Expiration: " + claims.getExpiration());
 	}	
 }

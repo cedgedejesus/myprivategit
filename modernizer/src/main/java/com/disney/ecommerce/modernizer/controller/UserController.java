@@ -18,7 +18,7 @@ import com.disney.ecommerce.modernizer.security.SecurityConstants;
 */
 @RestController
 public class UserController {	
-	@PostMapping("login")	
+	@PostMapping("user/guest")	
 	public ResponseEntity<String> login(@RequestBody ApplicationUser input) {
 		JWTUtil jwtUtil = new JWTUtil();
 		String token = jwtUtil.createJWT(input.getUsername(), "disney", "modernizer", SecurityConstants.EXPIRATION_TIME);

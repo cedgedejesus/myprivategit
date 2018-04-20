@@ -26,7 +26,6 @@ import io.swagger.annotations.ApiParam;
 * @since   2018-04-17 
 */
 @RestController
-@RequestMapping("/api")
 public class HotelController {
 	@Autowired
 	private IHotelService hotelService;	
@@ -37,10 +36,6 @@ public class HotelController {
 	@PostMapping("hotel")
 	public ResponseEntity<List<HotelSummary>> getAllHotels(@RequestBody HotelSearch input) {
 		List<HotelSummary> list = hotelService.getAllHotels(input);
-		System.out.println(input.getSalesChannel());
-		String token = jwtUtil.createJWT("id01","Sample", "Test", 10000);
-		System.out.println(token);
-		jwtUtil.authenticateJWT(token);
 		return new ResponseEntity<List<HotelSummary>>(list, HttpStatus.OK);
 	}
 	
@@ -48,8 +43,6 @@ public class HotelController {
 	public ResponseEntity<HotelSummary> getHotelDetails(
 			@ApiParam(value = "${HotelController.getHotelDetails.hotel_code}", required = true) @PathVariable("hotel_code") Integer id,
 			@RequestBody HotelSearch input) {
-		System.out.println(id);
-		System.out.println(input.getHotelCode());
 		return new ResponseEntity<HotelSummary>(hotelService.getHotelDetails(input), HttpStatus.OK);
 	}
 
