@@ -29,7 +29,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {	
-		System.out.println("Renz hhh");
 		 http
 		 .cors()
 		 .and()
@@ -60,13 +59,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		System.out.println("Renz!!");
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
 	}
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
-		System.out.println("Renz kkk");
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);

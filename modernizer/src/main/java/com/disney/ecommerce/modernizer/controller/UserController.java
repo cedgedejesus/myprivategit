@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.disney.ecommerce.modernizer.domain.ApplicationUser;
 import com.disney.ecommerce.modernizer.security.JWTUtil;
 import com.disney.ecommerce.modernizer.security.SecurityConstants;
+
 /**
-* HotelController contains all the RESTFul APIs for Hotel Management.
+* UserController contains all the RESTFul APIs for User Management
 *
 * @author  Renino Niefes
 * @version 1.0
@@ -18,6 +19,7 @@ import com.disney.ecommerce.modernizer.security.SecurityConstants;
 */
 @RestController
 public class UserController {	
+	
 	@PostMapping("user/guest")	
 	public ResponseEntity<String> login(@RequestBody ApplicationUser input) {
 		JWTUtil jwtUtil = new JWTUtil();

@@ -35,7 +35,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
 			throws AuthenticationException {
-		System.out.println("Renz 114");
 		try {
 			ApplicationUser creds = new ObjectMapper().readValue(req.getInputStream(), ApplicationUser.class);
 
@@ -48,9 +47,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 	@Override
 	protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain,
-			Authentication auth) throws IOException, ServletException {
-		System.out.println("Renz 445");
-		
+			Authentication auth) throws IOException, ServletException {		
 		String token = Jwts.builder().setSubject(((User) auth.getPrincipal()).getUsername())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes()).compact();
